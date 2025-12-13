@@ -1,4 +1,6 @@
 name: Lint and test charts
+permissions:
+  contents: read
 
 on:
   workflow_dispatch:
