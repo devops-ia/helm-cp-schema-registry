@@ -1,0 +1,42 @@
+
+replicaCount: 1
+
+strategy:
+  type: Recreate
+
+service:
+  type: ClusterIP
+  port: 8081
+  targetPort: 8081
+
+env:
+  # Mock Kafka bootstrap servers for CI testing
+  SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: "PLAINTEXT://localhost:9092"
+  SCHEMA_REGISTRY_HOST_NAME: "schema-registry"
+  SCHEMA_REGISTRY_LISTENERS: "http://0.0.0.0:8081"
+  SCHEMA_REGISTRY_HEAP_OPTS: "-Xms256M -Xmx256M"
+
+livenessProbe:
+  enabled: false
+
+readinessProbe:
+  enabled: false
+
+startupProbe:
+  enabled: false
+
+resources:
+  limits:
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+podLabels:
+  environment: "ci"
+  test: "helm-chart"
+
+metrics:
+  enabled: false
+  exporter:
+    enabled: false
