@@ -1,0 +1,28 @@
+replicaCount: 1
+
+strategy:
+  type: Recreate
+
+env:
+  APP_NAME: "cp-schema-registry CI"
+  GUNICORN_LOG_LEVEL: info
+  KUBERNETES_CLUSTER_NAME: "ci-cluster"
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "8501"
+
+podLabels:
+  environment: "ci"
+  app-type: "krr-dashboard"
+
+resources:
+  limits:
+    memory: 128Mi
+  requests:
+    cpu: "10m"
+    memory: 56Mi
+
+job:
+  enabled: true
+  initialJob: false

@@ -1,0 +1,65 @@
+# {{ template "chart.name" . }}
+
+{{ template "chart.description" . }}
+
+## Motivation
+
+The original Helm chart for [Confluent Schema Registry](https://github.com/confluentinc/cp-helm-charts/tree/master/charts/cp-schema-registry) has been deprecated, and over time it became too bulky and outdated. That's why I've created a new, lighter, and more up-to-date Helm chart. This new chart is more streamlined and easier to customize.
+
+## Some of the key changes include
+
+* Configurations that are compatible with the latest Kubernetes features
+* Easier setup, with more modular and flexible options
+
+{{ template "chart.maintainersSection" . }}
+
+## Prerequisites
+
+* Helm 3+
+
+{{ template "chart.requirementsSection" . }}
+
+## Add repository
+
+```console
+helm repo add cp-schema-registry https://devops-ia.github.io/helm-cp-schema-registry
+helm repo update
+```
+
+## Install Helm chart (repository mode)
+
+```console
+helm install [RELEASE_NAME] cp-schema-registry/{{ template "chart.name" . }}
+```
+
+This install all the Kubernetes components associated with the chart and creates the release.
+
+_See [helm install](https://helm.sh/docs/helm/helm_install/) for command documentation._
+
+## Install Helm chart (OCI mode)
+
+Charts are also available in OCI format. The list of available charts can be found [here](https://github.com/devops-ia/helm-cp-schema-registry/pkgs/container/helm-cp-schema-registry%2Fcp-schema-registry).
+
+```console
+helm install [RELEASE_NAME] oci://ghcr.io/devops-ia/helm-cp-schema-registry/cp-schema-registry --version=[version]
+```
+
+## Uninstall Helm chart
+
+```console
+helm uninstall [RELEASE_NAME]
+```
+
+This removes all the Kubernetes components associated with the chart and deletes the release.
+
+_See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command documentation._
+
+## Configuration
+
+See [Customizing the chart before installing](https://helm.sh/docs/intro/using_helm/#customizing-the-chart-before-installing). To see all configurable options with comments:
+
+```console
+helm show values cp-schema-registry/{{ template "chart.name" . }}
+```
+
+{{ template "chart.valuesSection" . }}
