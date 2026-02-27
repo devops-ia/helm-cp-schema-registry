@@ -1,4 +1,4 @@
-name: Check new releases
+name: Helm Check Releases
 
 permissions:
   contents: read
